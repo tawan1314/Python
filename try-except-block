@@ -1,0 +1,59 @@
+try:
+    1/0
+except ZeroDivisionError:
+    print("Cannot divide by zero")
+except NameError:
+    print("Variable is not defined")
+else:
+    print("Done")
+finally:
+    print("Complete")
+
+# import file Data analyst style
+
+try:
+    friends = pd.read_csv("Friend.csv")
+except:
+    print("File not found.")
+finally:
+    print("Complete")
+
+import csv
+
+try:
+    file = open("Friend.csv")
+    data = csv.reader(file)
+    for row in data:
+        print(row)
+    file.close()
+except:
+    print("File not found")
+
+# context manager
+
+result = []
+try: 
+    with open("friend.csv") as file:
+        data = csv.reader(file)
+        for row in data:
+            result.append(row)
+except:
+    print("File not found")
+finally:
+    print(result)
+
+# write csv file Easy style
+friends.to_csv("new_friends.csv")
+
+column_name = ["food_id", "food", "price"]
+
+data = [
+    [1, "Pizza", 200],
+    [2, "French fried", 50],
+    [3, "Coke", 15]
+]
+
+with open("food.csv", "w") as file:
+    writer = csv.writer(file)
+    writer.writerow(column_name)
+    writer.writerows(data)
