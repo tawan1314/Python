@@ -1,0 +1,20 @@
+def greeting(name, friend):
+  print("Hello " + name + "! " + "We are going to meet " + friend)
+  print(f"Hello {name}! We are going to meet {friend}")
+  print("Hello {}! We are going to meet {}".format(name, friend))
+
+greeting(name = "Tawan", friend = "Kao")
+
+def greeting2():
+  username = input("What is your name?: ")
+  message = print(f"Hello {username}, What are you doing today?")
+
+greeting2()
+
+text = "a duck Walks Into a bar"
+print(text)
+print(text.upper())
+print(text.lower())
+print(text.replace("duck", "cat"))
+print(text.capitalize())
+print(text.capitalize().split())
