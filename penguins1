@@ -1,0 +1,62 @@
+import pandas
+penguins = pandas.read_csv("penguins.csv")
+
+penguins.head()
+
+penguins.tail()
+
+penguins.shape
+
+penguins.info()
+
+penguins["species"].head()
+
+penguins[ ["species", "island", "sex"] ].head()
+
+penguins.iloc[ [0, 1, 2] ]
+
+penguins.iloc[0:3]
+
+penguins.iloc[0:3, 0:5]
+
+penguins["species"] == "Adelie"
+
+penguins[penguins["species"] == "Adelie"]
+
+penguins[(penguins["species"] == "Adelie") & (penguins["sex"] == "FEMALE")]
+
+penguins[(penguins["species"] == "Adelie") | (penguins["sex"] == "FEMALE")]
+
+penguins.query('island == "Torgersen" & sex == "MALE"')
+
+penguins.isna().sum()
+
+penguins[penguins["sex"].isna()]
+
+clean_penguins = penguins.dropna()
+
+clean_penguins.isna().sum()
+
+clean_penguins
+
+penguins["bill_length_mm"].mean()
+
+penguins["bill_length_mm"] = penguins["bill_length_mm"].fillna(value = penguins["bill_length_mm"].mean())
+
+penguins.sort_values("bill_length_mm")
+
+penguins.sort_values("bill_length_mm", ascending = False)
+
+(penguins.sort_values(["bill_length_mm", "bill_depth_mm"], ascending = False))
+
+penguins["species"].unique()
+
+penguins["species"].value_counts()
+
+count_species = penguins[["species", "island"]].value_counts().reset_index()
+
+count_species
+
+count_species.columns = ["island", "species", "n"]
+
+count_species
