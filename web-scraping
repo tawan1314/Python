@@ -1,0 +1,28 @@
+!pip install gazpacho
+
+import requests
+import gazpacho as gz
+
+# Medium website
+url = "https://medium.com/skooldio"
+
+# reauest content frpom medium
+response = requests.get(url)
+
+print(response.status_code)
+
+web = gz.Soup(response.text)
+
+# find the element you want
+web.find("h1")
+
+web.find("h2")
+
+web.find("h1").text
+
+web.find("h2").strip()
+
+web.find("h3")
+
+for title in web.find("h3"):
+    print(title.strip())
