@@ -1,0 +1,63 @@
+pizza_orders_chatbot <- function() {
+
+ # Greeting
+ message("Hello, Sudlorh's Pizza. Could I help you?")
+ user_answer <- readline(prompt = "Enter 'yes' to order or 'no' to exit: ")
+
+  # Pizza menu
+  pizza_menu <- list(
+    list("name" = "Double Pepperoni Pizza", "price" = 329),
+    list("name" = "Hawaiian Pizza", "price" = 219),
+    list("name" = "MeatLover Pizza", "price" = 299),
+    list("name" = "Seafoods Pizza Deluxe", "price" = 279),
+    list("name" = "Veggie Pizza", "price" = 269),
+    list("name" = "Salmon Deluxe Pizza", "price" = 319)
+  )
+
+  message("----------------------------------------------------")
+
+  # Display pizza menu
+  for (pizza in pizza_menu) {
+    cat(pizza$name, pizza$price, "฿", "\n")
+  }
+
+  message("----------------------------------------------------")
+
+  if (tolower(user_answer) == "yes") {
+   message("Awesome.")
+
+   # Order loop
+   orders <- list()
+   total_price <- 0
+
+   repeat {
+     user_order <- readline("Enter the name of the pizza you want to order (or 'enough' to finish): ")
+
+     # Check order
+     if (user_order == "enough") {
+       break
+     } else if (any(sapply(pizza_menu, function(pizza) pizza$name == user_order))) {
+       # Find pizza ordered in the menu
+       ordered_pizza <- pizza_menu[sapply(pizza_menu, function(pizza) pizza$name == user_order)][[1]]
+
+       # Add the pizza to the orders list and update total price
+       orders[[length(orders) + 1]] <- ordered_pizza
+       total_price <- total_price + ordered_pizza$price
+
+       message("You ordered ", ordered_pizza$name, " for ฿", ordered_pizza$price)
+     } else {
+       message("Sorry, that pizza is not on our menu. Please try again.")
+     }
+   }
+
+   # Display order summary
+   message("Here's your order summary:")
+   for (pizza in orders) {
+     cat(pizza$name, pizza$price, "฿", "\n")
+   }
+   message("Total price: ", total_price, "฿")
+   message("Thank you for your order!")
+ } else {
+   message("Thank you for visiting Sudlorh's Pizza!")
+ }
+}
