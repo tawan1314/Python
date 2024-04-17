@@ -1,0 +1,17 @@
+class DataAnalyst:
+  def __init__(self, name, company):
+    self.name = name
+    self.company = company
+
+  def hello(self):
+    print(f"{self.name} works at {self.company}")
+
+  def cal_mean(self, number):
+    self.number = (number * number) / 2
+
+tawan = DataAnalyst("Tawan", "Krungsri Nimble")
+print(tawan.name, tawan.company)
+
+tawan.hello()
+
+print(tawan.number)
