@@ -1,0 +1,74 @@
+game <- function() {
+
+## Login game
+  message("Do you want to play a game? Y/N")
+  answer <- readline()
+  if (answer != "Y" & answer != "y") {
+    print("QUIT GAME")
+    return()
+  }
+
+  message("Now, You are in the game!")
+  message(cat("[ rock", " paper", " scissors ]", "<- Choose your choice"))
+  message("***Write 'quit' for quit the game***")
+  message("-----------------------------------------------------")
+
+## Create variables for play the game
+  hands <- c("rock", "paper", "scissors")
+  player_score <- 0
+  npc_score <- 0
+
+## Play game
+  while (player_score < 3 & npc_score < 3) {
+    npc_choice <- sample(hands, size = 1)
+    player_choice <- readline("Player choice is: ")
+
+    ## quit game
+    if (player_choice == "quit") {
+        message("Good bye")
+        message("QUIT GAME")
+        break
+    }
+
+    cat("NPC choice is: ", npc_choice, "\n")
+
+## Rules
+    if (player_choice == npc_choice) {
+      message("\n***DRAW***")
+    } else if ((player_choice == "rock" & npc_choice == "scissors") |
+              (player_choice == "paper" & npc_choice == "rock") |
+              (player_choice == "scissors" & npc_choice == "paper")) {
+      message("\n***WIN***")
+      player_score <- player_score + 1
+    } else {
+      message("\n***LOSE***")
+      npc_score <- npc_score + 1
+    }
+
+    message(cat("Current score\n", "Player score: ", player_score, "\n", "NPC score: ", npc_score))
+    message("-----------------------------------------------------")
+
+## Result
+    if (player_score == 3) {
+      message("CONGRATULATION! YOU ARE THE WINNER!!")
+      message("\nDo you want to play again? Y/N")
+      answer_end <- readline()
+      if (answer_end == "Y" | answer_end == "y") {
+        game()
+      } else {
+        message("QUIT GAME")
+        return()
+      }
+    } else if (npc_score == 3) {
+      message("GAME OVER...")
+      message("\nDo you want to play again? Y/N")
+      answer_end <- readline()
+      if (answer_end == "Y" | answer_end == "y") {
+        game()
+      } else {
+        message("QUIT GAME")
+        return()
+      }
+    }
+  }
+}
