@@ -1,0 +1,51 @@
+import pandas as pd
+
+penguins = pd.read_csv("penguins.csv")
+
+penguins
+
+penguins.describe()
+
+penguins.describe(include = "all")
+
+penguins["bill_length_mm"].mean()
+
+penguins["bill_length_mm"].std()
+
+penguins["bill_length_mm"].median()
+
+penguins.groupby("species")["bill_length_mm"].mean()
+
+penguins.groupby("species")["bill_length_mm"].sum()
+
+penguins[penguins["species"] == "Adelie"]["bill_length_mm"].mean()
+
+penguins.groupby("species")["bill_length_mm"].agg(["min", "max", "mean", "median", "std", "sum"])
+
+result = penguins.groupby(["species", "island", "sex"])["bill_length_mm"]\
+  .agg(["min", "max", "mean", "median", "std", "sum"])\
+  .reset_index()
+
+result.to_csv("result.csv")
+
+result
+
+penguins["sex"].head()
+
+penguins["sex"].map({"MALE":"m", "FEMALE":"f"}).fillna("other")
+
+penguins["sex_new"] = penguins["sex"].map({"MALE":"m", "FEMALE":"f"}).fillna("other")
+
+penguins
+
+import numpy as np
+
+# find mean pandas style
+penguins["bill_length_mm"].mean()
+
+# find mean numpy style
+np.mean(penguins["bill_length_mm"])
+
+penguins.query('bill_length_mm > 50').dropna()
+
+np.where(penguins["bill_length_mm"] > 50, "long", "short")
