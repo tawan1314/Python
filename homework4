@@ -1,0 +1,32 @@
+import random
+
+def rps():
+  login = str(input("Do you want to play? (y/n): "))
+  if login != "y":
+    return None
+
+  user_score = 0
+  npc_score = 0
+  choice = ["Rock", "Paper", "Scissors"]
+
+  while user_score < 3 and npc_score < 3:
+    player_choice = str(input("\nYour choice is: "))
+    npc_choice = random.choice(choice)
+    print("NPC choice is:", npc_choice)
+    if (player_choice == "Rock" and npc_choice == "Rock") or (player_choice == "Paper" and npc_choice == "Paper") or (player_choice == "Scissors" and npc_choice == "Scissors"):
+      user_score = user_score + 0
+      npc_score = npc_score + 0
+      print("\nResult is Draw!\n")
+    elif (player_choice == "Rock" and npc_choice == "Scissors") or (player_choice == "Scissors" and npc_choice == "Paper") or (player_choice == "Paper" and npc_choice == "Rock"):
+      user_score = user_score + 1
+      npc_score = npc_score + 0
+      print("\nResult is Player Win\n")
+    else:
+      user_score = user_score + 0
+      npc_score = npc_score + 1
+      print("\nResult is NPC Win\n")
+    print(f"Player score: {user_score}\nNPC score: {npc_score}")
+    print("**************************************************************\n")
+
+  print("Done!")
+
